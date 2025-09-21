@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sofara Live — الصفارة</title>
+
+  <!-- Icons (Phosphor) -->
+  <link rel="stylesheet" href="https://unpkg.com/phosphor-icons@1.4.0/src/css/phosphor.css" />
+
+  <!-- HLS.js + mpegts.js -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mpegts.js@latest"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">📺</div>
+        <div class="title">Sofara <span>Live</span></div>
+      </div>
+
+      <nav class="nav">
+        <a href="#live" class="nav-link active">البث</a>
+        <a href="#matches" class="nav-link">المباريات</a>
+        <a href="#results" class="nav-link">النتائج</a>
+      </nav>
+      <div class="controls">
+        <button id="themeToggle" title="تبديل الوضع">🌗</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="live" class="card live-card">
+  <div class="left">
+    <h3>قنوات رياضية</h3>
+    <input id="filterInput" placeholder="ابحث عن قناة..." />
+    <div id="channels" class="channels"></div>
+  </div>
+
+  <div class="center">
+    <div class="player-shell">
+      <div class="player-topbar">
+        <div id="currentChannel" class="current-channel">اختر قناة</div>
+        <select id="qualitySelect" title="اختيار جودة" class="quality"></select>
+      </div>
+
+      <div class="player-frame">
+        <video id="videoElement" controls playsinline></video>
+      </div>
+    </div>
+  </div>
+
+  <aside class="right info">
+    <h4>المباريات الآن</h4>
+    <ul id="liveMatches">جارٍ تحميل...</ul>
+    <h4 style="margin-top:18px">آخر النتائج</h4>
+    <ul id="recentResults">جارٍ تحميل...</ul>
+  </aside>
+</section>
+
+      <!-- Matches table -->
+      <section id="matches" class="card">
+        <h2>📅 مباريات اليوم</h2>
+        <div class="table-wrap">
+          <table id="matchesTable">
+            <thead><tr><th>الوقت</th><th>الفريقان</th><th>الدوري</th><th>النتيجة</th></tr></thead>
+            <tbody id="matchesList"><tr><td colspan="4">جارٍ التحميل...</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Results -->
+      <section id="results" class="card">
+        <h2>🏆 آخر النتائج</h2>
+        <div class="table-wrap">
+          <table id="resultsTable">
+            <thead><tr><th>الوقت</th><th>الفريقان</th><th>الدوري</th><th>النتيجة</th></tr></thead>
+            <tbody id="resultsList"><tr><td colspan="4">جارٍ التحميل...</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      © Sofara Live 2025 — جميع الحقوق محفوظة
+    </footer>
+  </div>
+
+  <!-- App scripts -->
+  <script>
+    // path to channels JSON (موجود في مجلد المشروع)
+    window.CHANNELS_JSON = 'sports_channels.json';
+    // API-football key (الذي أعطيتَه). نستخدمه في matches.js
+    window.API_FOOTBALL_KEY = 'b20a424ae97a9a108fd99f5da5590f91';
+  </script>
+  <script src="player.js"></script>
+  <script src="matches.js"></script>
+</body>
+</html>
